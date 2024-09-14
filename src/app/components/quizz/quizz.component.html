@@ -1,24 +1,26 @@
 <div class="container">
   <div class="container__logo">
     <img src="assets/imgs/logo.png" alt="">
-    <h1>Você seria um heroi ou vilão ?</h1>
+    <h1>{{title}}</h1>
   </div>
-  <div class="container__question">
-    <h1>Qual super poder você escolheria?</h1>
-  </div>
-  <div class="container__options">
-    <button class="options__btn-options">
-      Raios-Lasers
-    </button>
-    <button class="options__btn-options">
-      Raios-Lasers
-    </button>
-    <button class="options__btn-options">
-      Raios-Lasers
-    </button>
-  </div>
-  <div class="container__result">
-    <h1>O Seu Resultado é:</h1>
-    <p>Você muito provavelmente seria um super heroi</p>
-  </div>
+  @if (!finished) {
+    <div class="container__question">
+      <h1>{{questionSelected.question}}</h1>
+    </div>
+    <div class="container__options">
+      @for (options of questionSelected.options; track options.id) {
+        <button
+          (click)="playerChoose(options.alias )"
+          class="options__btn-options"
+        >
+        {{options.name}}
+        </button>
+      }
+    </div>
+  } @else {
+    <div class="container__result">
+      <h1>O Seu Resultado é:</h1>
+      <p>{{result}}</p>
+    </div>
+  }
 </div>

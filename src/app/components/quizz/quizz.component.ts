@@ -42,11 +42,11 @@ export class QuizzComponent implements OnInit {
   isEndGame():void {
     if (this.questionIndex === this.questions.length){
       this.finished = true
-      if (this.answers.filter(x => x == "A").length > this.answers.filter(x => x == 'B').length){
-        this.result = quizz_questions.results.A
-      } else {
-        this.result = quizz_questions.results.B
+      let cont = 0
+      for(let ans of this.answers){
+        cont = ans == 'A' ? ++cont:--cont
       }
+      this.result = cont > 0 ? quizz_questions.results.A: quizz_questions.results.B
     }
   }
 }
